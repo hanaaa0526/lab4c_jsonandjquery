@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Books JSON</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+<h2>Book Information</h2>
+
+<p id="book1Title"></p>
+<p id="book2Author"></p>
+<p id="allGenres"></p>
+
+<script>
+
+$.getJSON("books.json", function(data) {
+
+    // (a) Title of the first book
+    let firstBookTitle = data.books[0].title;
+    console.log("Title of first book: " + firstBookTitle);
+
+    // (b) Author of the second book
+    let secondBookAuthor = data.books[1].author;
+    console.log("Author of second book: " + secondBookAuthor);
+
+    // (c) Genres of all books
+    console.log("Genres of all books:");
+
+    data.books.forEach(function(book) {
+        console.log(book.title + ": " + book.genres.join(", "));
+    });
+
+    // Display on webpage
+    $("#book1Title").text("Title of first book: " + firstBookTitle);
+
+    $("#book2Author").text("Author of second book: " + secondBookAuthor);
+
+    let genres = "";
+
+    data.books.forEach(function(book) {
+        genres += book.title + ": " + book.genres.join(", ") + "<br>";
+    });
+
+    $("#allGenres").html("Genres of all books:<br>" + genres);
+
+});
+
+</script>
+
+</body>
+</html>
