@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book Information</title>
+
+    <!-- Import jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+</head>
+<body>
+
+    <h1>Book Information</h1>
+
+    <script>
+
+        // Load JSON file
+        $.getJSON("books.json", function(data) {
+
+            // (a) Display the title of the first book
+            console.log("Question (a):");
+            console.log("First Book Title: " + data.books[0].title);
+
+            // (b) Display the author of the second book
+            console.log("Question (b):");
+            console.log("Second Book Author: " + data.books[1].author);
+
+            // (c) Display the genres of all books
+            console.log("Question (c):");
+            
+            data.books.forEach(function(book, index) {
+
+                console.log("Book " + (index + 1) + " Genres: " + book.genres.join(", "));
+
+            });
+
+        });
+
+    </script>
+
+</body>
+</html>
